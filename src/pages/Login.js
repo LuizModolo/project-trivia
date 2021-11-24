@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Input from '../components/Input';
 import Button from '../components/Button';
 
@@ -13,7 +14,8 @@ class Login extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
+    this.handleLoginButton = this.handleLoginButton.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   // Função base retirada do course
@@ -21,16 +23,21 @@ class Login extends Component {
     const { name, value } = target;
     this.setState({
       [name]: value,
-    }, this.handleLoginClick());
+    }, this.handleLoginButton());
   }
 
-  handleLoginClick() {
+  handleLoginButton() {
     const { name, email } = this.state;
     if (email && name) {
       this.setState({ inLoginButtonDisabled: false });
     } else {
       this.setState({ inLoginButtonDisabled: true });
     }
+  }
+
+  handleClick() {
+    const { history } = this.props;
+    history.push('/game');
   }
 
   render() {
@@ -57,11 +64,15 @@ class Login extends Component {
           labelText="Jogar"
           testId="btn-play"
           disabled={ inLoginButtonDisabled }
-          onClick={ () => {} }
+          onClick={ this.handleClick }
         />
       </div>
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.shape().isRequired,
+};
 
 export default Login;
