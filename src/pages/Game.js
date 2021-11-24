@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
+import { fetchApi } from '../actions';
 
 class Game extends Component {
   constructor() {
@@ -18,10 +21,12 @@ class Game extends Component {
   }
 
   async fetchTokenApi() {
+    const { fetchDispatch } = this.props;
     const response = await fetch('https://opentdb.com/api_token.php?command=request')
       .then((r) => r.json());
     this.setState({ token: response });
     this.sendTokenStorage();
+    fetchDispatch(response);
   }
 
   sendTokenStorage() {
@@ -39,4 +44,12 @@ class Game extends Component {
   }
 }
 
-export default Game;
+const mapDispatchToProps = (dispatch) => ({
+  fetchDispatch: (token) => dispatch(fetchApi(token)),
+});
+
+Game.propTypes = {
+  fetchDispatch: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(Game);
