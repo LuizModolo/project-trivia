@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from '../components/Header';
 
 class Game extends Component {
   constructor() {
@@ -31,6 +32,7 @@ class Game extends Component {
   render() {
     return (
       <div>
+        <Header />
         OI
       </div>
     );
