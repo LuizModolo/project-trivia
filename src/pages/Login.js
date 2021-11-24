@@ -16,6 +16,7 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleLoginButton = this.handleLoginButton.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleSettings = this.handleSettings.bind(this);
   }
 
   // Função base retirada do course
@@ -38,6 +39,11 @@ class Login extends Component {
   handleClick() {
     const { history } = this.props;
     history.push('/game');
+  }
+
+  handleSettings() {
+    const { history } = this.props;
+    history.push('/settings');
   }
 
   render() {
@@ -65,6 +71,11 @@ class Login extends Component {
           testId="btn-play"
           disabled={ inLoginButtonDisabled }
           onClick={ this.handleClick }
+        />
+        <Button
+          labelText="Configurações"
+          testId="btn-settings"
+          onClick={ this.handleSettings }
         />
       </div>
     );
