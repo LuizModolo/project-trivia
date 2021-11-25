@@ -23,7 +23,6 @@ const headerReducer = (state = INITIAL_STATE, action) => {
       } };
 
   case 'CORRECT_ANSWER':
-    console.log(action);
     return { ...state,
       player: { ...state.player,
         assertions: Number(state.player.assertions) + 1,

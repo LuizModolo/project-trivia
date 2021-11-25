@@ -10,13 +10,14 @@ class Questions extends Component {
 
     this.state = {
       seconds: 30,
-      score: 0,
+      // score: 0,
       isButtonDisabled: false,
     };
 
     this.clickAnswer = this.clickAnswer.bind(this);
     this.disabledButton = this.disabledButton.bind(this);
     this.changeBorderColor = this.changeBorderColor.bind(this);
+    this.calculateScore = this.calculateScore.bind(this);
   }
 
   componentDidMount() {
@@ -48,37 +49,38 @@ class Questions extends Component {
 
   changeBorderColor(target) {
     const { classList } = target;
-    if (classList.contains('wrong-answer2')) {
+    if (classList.contains('wrong-answer')) {
       classList.add('wrong-answer2');
     } else {
       classList.add('correct-answer2');
     }
   }
 
-  clickAnswer({ target }) {
-    const { seconds, score } = this.state;
-    const { questionData, noAnswerDispatch, correctAnswerDispatch } = this.props;
+  calculateScore(difficulty) {
+    const { seconds } = this.state;
     const hard = 3;
     const medium = 2;
     const easy = 1;
     const scoreBase = 10;
+    let score = 0;
+    if (difficulty === 'hard') {
+      score = (scoreBase + (Number(seconds) * hard));
+    } else if (difficulty === 'medium') {
+      score = (scoreBase + (Number(seconds) * medium));
+    } else {
+      score = (scoreBase + (Number(seconds) * easy));
+    }
+    return score;
+  }
+
+  clickAnswer({ target }) {
+    const { questionData, noAnswerDispatch, correctAnswerDispatch } = this.props;
     if (target.className === 'wrong-answer') {
       noAnswerDispatch();
       this.changeBorderColor(target);
-    } else if (questionData.difficulty === 'hard') {
-      this.setState({
-        score: scoreBase + (Number(seconds) * hard),
-      }, correctAnswerDispatch(Number(score)));
-      this.changeBorderColor(target);
-    } else if (questionData.difficulty === 'medium') {
-      this.setState({
-        score: scoreBase + (Number(seconds) * medium),
-      }, correctAnswerDispatch(Number(score)));
-      this.changeBorderColor(target);
     } else {
-      this.setState({
-        score: scoreBase + (Number(seconds) * easy),
-      }, correctAnswerDispatch(Number(score)));
+      const score = this.calculateScore(questionData.difficulty);
+      correctAnswerDispatch(score);
       this.changeBorderColor(target);
     }
   }
