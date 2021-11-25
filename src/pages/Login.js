@@ -52,34 +52,37 @@ class Login extends Component {
   render() {
     const { name, email, inLoginButtonDisabled } = this.state;
     return (
-      <div>
-        <Input
-          testId="input-player-name"
-          type="text"
-          name="name"
-          value={ name }
-          onChange={ this.handleChange }
-          placeholder="Nome"
-        />
-        <Input
-          testId="input-gravatar-email"
-          type="email"
-          name="email"
-          value={ email }
-          onChange={ this.handleChange }
-          placeholder="E-mail"
-        />
-        <Button
-          labelText="Jogar"
-          testId="btn-play"
-          disabled={ inLoginButtonDisabled }
-          onClick={ this.handleClick }
-        />
-        <Button
-          labelText="Configurações"
-          testId="btn-settings"
-          onClick={ this.handleSettings }
-        />
+      <div className="login-back">
+        <div className="login-page">
+          <img src="logoMillionaire.png" alt="logotipo-do-jogo" />
+          <Input
+            testId="input-player-name"
+            type="text"
+            name="name"
+            value={ name }
+            onChange={ this.handleChange }
+            placeholder="Nome"
+          />
+          <Input
+            testId="input-gravatar-email"
+            type="email"
+            name="email"
+            value={ email }
+            onChange={ this.handleChange }
+            placeholder="E-mail"
+          />
+          <Button
+            labelText="Jogar"
+            testId="btn-play"
+            disabled={ inLoginButtonDisabled }
+            onClick={ this.handleClick }
+          />
+          <Button
+            labelText="Configurações"
+            testId="btn-settings"
+            onClick={ this.handleSettings }
+          />
+        </div>
       </div>
     );
   }
