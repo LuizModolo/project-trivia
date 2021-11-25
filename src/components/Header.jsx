@@ -46,8 +46,13 @@ class Header extends React.Component {
 
 Header.propTypes = {
   userData: PropTypes.shape().isRequired,
-  email: PropTypes.string.isRequired,
-  user: PropTypes.string.isRequired,
+  email: PropTypes.string,
+  user: PropTypes.string,
+};
+
+Header.defaultProps = {
+  email: 'example@test.com',
+  user: 'Default User',
 };
 
 const mapStateToProps = (state) => (
