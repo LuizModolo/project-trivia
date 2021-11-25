@@ -11,7 +11,7 @@ class Header extends React.Component {
 
   getGravatar() {
     const { userData } = this.props;
-    const convertG = md5(userData.email).toString();
+    const convertG = md5(userData.gravatarEmail).toString();
     const srcImg = `https://www.gravatar.com/avatar/${convertG}`;
     return srcImg;
   }
@@ -29,14 +29,14 @@ class Header extends React.Component {
           <p
             data-testid="header-player-name"
           >
-            { userData.user }
+            { userData.name }
           </p>
         </div>
         <div>
           <p
             data-testid="header-score"
           >
-            0
+            { userData.score }
           </p>
         </div>
       </div>
@@ -46,17 +46,17 @@ class Header extends React.Component {
 
 Header.propTypes = {
   userData: PropTypes.shape().isRequired,
-  email: PropTypes.string,
-  user: PropTypes.string,
+  gravatarEmail: PropTypes.string,
+  name: PropTypes.string,
 };
 
 Header.defaultProps = {
-  email: 'example@test.com',
-  user: 'Default User',
+  gravatarEmail: 'example@test.com',
+  name: 'Default User',
 };
 
 const mapStateToProps = (state) => (
-  { userData: state.headerReducer }
+  { userData: state.headerReducer.player }
 );
 
 export default connect(mapStateToProps, null)(Header);
