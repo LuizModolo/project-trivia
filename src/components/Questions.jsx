@@ -10,7 +10,6 @@ class Questions extends Component {
         <h2 data-testid="question-category">{ questionData.category }</h2>
         <h3 data-testid="question-text">{ questionData.question }</h3>
         <div>
-          { answersList.length > 0 ? console.log(answersList) : <p>fail</p>}
           { answersList.map((answer, index) => (answer === questionData.correct_answer ? (
             <Button
               key={ index }
