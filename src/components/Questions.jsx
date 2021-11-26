@@ -12,6 +12,7 @@ class Questions extends Component {
       seconds: 30,
       // score: 0,
       isButtonDisabled: false,
+      isButtonNextDisabled: true,
       isBorderWithColor: false,
     };
 
@@ -20,6 +21,8 @@ class Questions extends Component {
     this.changeBorderColor = this.changeBorderColor.bind(this);
     this.calculateScore = this.calculateScore.bind(this);
     this.setInitialState = this.setInitialState.bind(this);
+    this.sendPlayerInfotStorage = this.sendPlayerInfotStorage.bind(this);
+    this.disabledNextButton = this.disabledNextButton.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +39,7 @@ class Questions extends Component {
       // Quando chegar em 30, Resposta errada. Sem pontuacao.
       this.disabledButton();
       noAnswerDispatch();
+      this.changeBorderColor();
     }
   }
 
@@ -49,11 +53,18 @@ class Questions extends Component {
     });
   }
 
+  disabledNextButton() {
+    this.setState({
+      isButtonNextDisabled: false,
+    });
+  }
+
   setInitialState() {
     this.setState({
       seconds: 30,
       isButtonDisabled: false,
       isBorderWithColor: false,
+      isButtonNextDisabled: true,
     });
   }
 
@@ -61,6 +72,11 @@ class Questions extends Component {
     this.setState({
       isBorderWithColor: true,
     });
+  }
+
+  sendPlayerInfotStorage() {
+    const { playerData } = this.props;
+    localStorage.setItem('player', JSON.stringify(playerData));
   }
 
   calculateScore(difficulty) {
@@ -80,23 +96,26 @@ class Questions extends Component {
     return score;
   }
 
-  clickAnswer({ target }) {
+  async clickAnswer({ target }) {
     const { questionData, noAnswerDispatch, correctAnswerDispatch } = this.props;
     if (target.className === 'wrong-answer') {
-      noAnswerDispatch();
+      await noAnswerDispatch();
       this.changeBorderColor();
       this.disabledButton();
+      this.sendPlayerInfotStorage();
     } else {
       const score = this.calculateScore(questionData.difficulty);
-      correctAnswerDispatch(score);
+      await correctAnswerDispatch(score);
       this.changeBorderColor();
       this.disabledButton();
+      this.sendPlayerInfotStorage();
     }
+    this.disabledNextButton();
   }
 
   render() {
     const { questionData, onClick, answersList } = this.props;
-    const { isButtonDisabled, isBorderWithColor } = this.state;
+    const { isButtonDisabled, isBorderWithColor, isButtonNextDisabled } = this.state;
     return (
       <div>
         <h2 data-testid="question-category">{ questionData.category }</h2>
@@ -120,10 +139,11 @@ class Questions extends Component {
                 labelText={ answer }
                 disabled={ isButtonDisabled }
               />)))}
-          <Button
+          { !isButtonNextDisabled && <Button
             onClick={ () => { this.setInitialState(); onClick(); } }
             labelText="Próxima"
-          />
+            testId="btn-next"
+          /> }
         </div>
       </div>
     );
@@ -135,12 +155,17 @@ const mapDispatchToProps = (dispatch) => ({
   correctAnswerDispatch: (score) => dispatch(correctAnswer(score)),
 });
 
+const mapStateToProps = (state) => ({
+  playerData: state.headerReducer,
+});
+
 Questions.propTypes = {
   questionData: PropTypes.shape().isRequired,
   onClick: PropTypes.func.isRequired,
   answersList: PropTypes.arrayOf(PropTypes.string).isRequired,
   noAnswerDispatch: PropTypes.func.isRequired,
   correctAnswerDispatch: PropTypes.func.isRequired,
+  playerData: PropTypes.shape().isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Questions);
+export default connect(mapStateToProps, mapDispatchToProps)(Questions);
