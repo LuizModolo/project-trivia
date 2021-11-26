@@ -12,12 +12,14 @@ class Questions extends Component {
       seconds: 30,
       // score: 0,
       isButtonDisabled: false,
+      isBorderWithColor: false,
     };
 
     this.clickAnswer = this.clickAnswer.bind(this);
     this.disabledButton = this.disabledButton.bind(this);
     this.changeBorderColor = this.changeBorderColor.bind(this);
     this.calculateScore = this.calculateScore.bind(this);
+    this.setInitialState = this.setInitialState.bind(this);
   }
 
   componentDidMount() {
@@ -47,13 +49,18 @@ class Questions extends Component {
     });
   }
 
-  changeBorderColor(target) {
-    const { classList } = target;
-    if (classList.contains('wrong-answer')) {
-      classList.add('wrong-answer2');
-    } else {
-      classList.add('correct-answer2');
-    }
+  setInitialState() {
+    this.setState({
+      seconds: 30,
+      isButtonDisabled: false,
+      isBorderWithColor: false,
+    });
+  }
+
+  changeBorderColor() {
+    this.setState({
+      isBorderWithColor: true,
+    });
   }
 
   calculateScore(difficulty) {
@@ -77,17 +84,19 @@ class Questions extends Component {
     const { questionData, noAnswerDispatch, correctAnswerDispatch } = this.props;
     if (target.className === 'wrong-answer') {
       noAnswerDispatch();
-      this.changeBorderColor(target);
+      this.changeBorderColor();
+      this.disabledButton();
     } else {
       const score = this.calculateScore(questionData.difficulty);
       correctAnswerDispatch(score);
-      this.changeBorderColor(target);
+      this.changeBorderColor();
+      this.disabledButton();
     }
   }
 
   render() {
     const { questionData, onClick, answersList } = this.props;
-    const { isButtonDisabled } = this.state;
+    const { isButtonDisabled, isBorderWithColor } = this.state;
     return (
       <div>
         <h2 data-testid="question-category">{ questionData.category }</h2>
@@ -95,7 +104,7 @@ class Questions extends Component {
         <div>
           { answersList.map((answer, index) => (answer === questionData.correct_answer ? (
             <Button
-              className="correct-answer"
+              className={ isBorderWithColor ? 'correct-answer2' : 'correct-answer' }
               key={ index }
               testId="correct-answer"
               onClick={ this.clickAnswer }
@@ -104,7 +113,7 @@ class Questions extends Component {
             />)
             : (
               <Button
-                className="wrong-answer"
+                className={ isBorderWithColor ? 'wrong-answer2' : 'wrong-answer' }
                 key={ index }
                 testId={ `wrong-answer-${index}` }
                 onClick={ this.clickAnswer }
@@ -112,7 +121,7 @@ class Questions extends Component {
                 disabled={ isButtonDisabled }
               />)))}
           <Button
-            onClick={ onClick }
+            onClick={ () => { this.setInitialState(); onClick(); } }
             labelText="Próxima"
           />
         </div>
