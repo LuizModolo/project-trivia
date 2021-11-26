@@ -20,7 +20,6 @@ class Game extends Component {
     this.changeQuestion = this.changeQuestion.bind(this);
     this.createAnswersList = this.createAnswersList.bind(this);
     this.shuffleAnswersList = this.shuffleAnswersList.bind(this);
-    // this.sendPlayerInfotStorage = this.sendPlayerInfotStorage.bind(this);
   }
 
   componentDidMount() {
@@ -62,16 +61,17 @@ class Game extends Component {
   }
 
   changeQuestion() {
-    this.setState((previus) => ({
-      questionIndex: previus.questionIndex + 1,
-    }), this.createAnswersList);
-    // this.sendPlayerInfotStorage();
+    const { questionIndex } = this.state;
+    const { history } = this.props;
+    const maxQuestion = 4;
+    if (questionIndex === maxQuestion) {
+      history.push('/feedback');
+    } else {
+      this.setState((previus) => ({
+        questionIndex: previus.questionIndex + 1,
+      }), this.createAnswersList);
+    }
   }
-
-  // sendPlayerInfotStorage() {
-  //   const { playerData } = this.props;
-  //   localStorage.setItem('player', JSON.stringify(playerData.player));
-  // }
 
   render() {
     const { questionIndex, answersList } = this.state;
@@ -97,13 +97,12 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   apiData: state.gameReducer.jsonInfo,
-  // playerData: state.headerReducer,
 });
 
 Game.propTypes = {
   fetchDispatch: PropTypes.func.isRequired,
   apiData: PropTypes.shape().isRequired,
-  // playerData: PropTypes.shape().isRequired,
+  history: PropTypes.shape().isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

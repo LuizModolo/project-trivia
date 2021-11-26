@@ -40,6 +40,14 @@ class Login extends Component {
 
   handleClick() {
     const { history, emailDispatch } = this.props;
+    const { name, email } = this.state;
+    const obj = { player: {
+      name,
+      assertions: 0,
+      score: 0,
+      gravatarEmail: email,
+    } };
+    localStorage.setItem('state', JSON.stringify(obj));
     emailDispatch(this.state);
     history.push('/game');
   }
