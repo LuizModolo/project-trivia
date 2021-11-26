@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 class Button extends Component {
   render() {
-    const { disabled, testId, onClick, labelText } = this.props;
+    const { disabled, testId, onClick, labelText, className } = this.props;
     return (
       <button
         type="button"
         disabled={ disabled }
         onClick={ onClick }
         data-testid={ testId }
+        className={ className }
       >
         { labelText }
       </button>
@@ -22,10 +23,12 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   labelText: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 Button.defaultProps = {
   disabled: false,
+  className: 'x',
 };
 
 export default Button;

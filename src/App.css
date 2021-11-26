@@ -84,9 +84,9 @@ button:hover, button:focus {
   outline: none;
 }
 
-button:active {
+/* button:active {
   box-shadow: 0 0 0 3px var(--color) , 0 0 0 4px var(--color);
-}
+} */
 
 button:disabled {
   cursor: wait;
@@ -130,3 +130,20 @@ hr {
   width: 17vw;
 }
 
+.correct-answer {
+  margin: 10px;
+}
+
+.correct-answer2 {
+  border: 3px solid rgb(6, 240, 15);
+  margin: 10px;
+}
+
+.wrong-answer {
+  margin: 10px;
+}
+
+.wrong-answer2 {
+  border: 3px solid red;
+  margin: 10px;
+}
