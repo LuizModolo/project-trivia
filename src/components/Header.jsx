@@ -23,7 +23,7 @@ class Header extends React.Component {
         <div>
           <img
             src={ this.getGravatar() }
-            alt="teste"
+            alt="sua foto"
             data-testid="header-profile-picture"
           />
           <p

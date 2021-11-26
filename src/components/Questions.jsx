@@ -76,7 +76,7 @@ class Questions extends Component {
 
   sendPlayerInfotStorage() {
     const { playerData } = this.props;
-    localStorage.setItem('player', JSON.stringify(playerData));
+    localStorage.setItem('state', JSON.stringify(playerData));
   }
 
   calculateScore(difficulty) {
@@ -100,26 +100,28 @@ class Questions extends Component {
     const { questionData, noAnswerDispatch, correctAnswerDispatch } = this.props;
     if (target.className === 'wrong-answer') {
       await noAnswerDispatch();
+      this.sendPlayerInfotStorage();
       this.changeBorderColor();
       this.disabledButton();
-      this.sendPlayerInfotStorage();
     } else {
       const score = this.calculateScore(questionData.difficulty);
       await correctAnswerDispatch(score);
+      this.sendPlayerInfotStorage();
       this.changeBorderColor();
       this.disabledButton();
-      this.sendPlayerInfotStorage();
     }
     this.disabledNextButton();
   }
 
   render() {
     const { questionData, onClick, answersList } = this.props;
-    const { isButtonDisabled, isBorderWithColor, isButtonNextDisabled } = this.state;
+    const { isButtonDisabled, isBorderWithColor,
+      isButtonNextDisabled, seconds } = this.state;
     return (
       <div>
         <h2 data-testid="question-category">{ questionData.category }</h2>
         <h3 data-testid="question-text">{ questionData.question }</h3>
+        <p>{ seconds }</p>
         <div>
           { answersList.map((answer, index) => (answer === questionData.correct_answer ? (
             <Button
