@@ -97,7 +97,10 @@ class Questions extends Component {
   }
 
   async clickAnswer({ target }) {
-    const { questionData, noAnswerDispatch, correctAnswerDispatch } = this.props;
+    const {
+      questionData,
+      noAnswerDispatch,
+      correctAnswerDispatch } = this.props;
     if (target.className === 'wrong-answer') {
       await noAnswerDispatch();
       this.sendPlayerInfotStorage();

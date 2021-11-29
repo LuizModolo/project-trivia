@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
-import { fetchApi } from '../actions';
+import { fetchApi, getScoreAction } from '../actions';
 
 class Game extends Component {
   constructor() {
@@ -20,6 +20,8 @@ class Game extends Component {
     this.changeQuestion = this.changeQuestion.bind(this);
     this.createAnswersList = this.createAnswersList.bind(this);
     this.shuffleAnswersList = this.shuffleAnswersList.bind(this);
+    this.sendRankingInfo = this.sendRankingInfo.bind(this);
+    this.sendRankingToStorage = this.sendRankingToStorage.bind(this);
   }
 
   componentDidMount() {
@@ -60,11 +62,25 @@ class Game extends Component {
     return shuffled;
   }
 
-  changeQuestion() {
+  sendRankingInfo() {
+    const { playerData, getScoreDispatch } = this.props;
+    getScoreDispatch(playerData.player.score);
+  }
+
+  sendRankingToStorage() {
+    const { rankingData } = this.props;
+    const previousRanking = JSON.parse(localStorage.getItem('ranking'));
+    // const attRanking = [...previousRanking, rankingData];
+    localStorage.setItem('ranking', JSON.stringify([...previousRanking, rankingData]));
+  }
+
+  async changeQuestion() {
     const { questionIndex } = this.state;
     const { history } = this.props;
     const maxQuestion = 4;
     if (questionIndex === maxQuestion) {
+      await this.sendRankingInfo();
+      await this.sendRankingToStorage();
       history.push('/feedback');
     } else {
       this.setState((previus) => ({
@@ -93,16 +109,22 @@ class Game extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchDispatch: (token) => dispatch(fetchApi(token)),
+  getScoreDispatch: (score) => dispatch(getScoreAction(score)),
 });
 
 const mapStateToProps = (state) => ({
   apiData: state.gameReducer.jsonInfo,
+  rankingData: state.gameReducer.ranking.player,
+  playerData: state.headerReducer,
 });
 
 Game.propTypes = {
   fetchDispatch: PropTypes.func.isRequired,
   apiData: PropTypes.shape().isRequired,
   history: PropTypes.shape().isRequired,
+  getScoreDispatch: PropTypes.func.isRequired,
+  playerData: PropTypes.shape().isRequired,
+  rankingData: PropTypes.shape().isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

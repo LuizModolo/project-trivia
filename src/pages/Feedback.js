@@ -60,11 +60,13 @@ class Feedback extends Component {
 
 const mapStateToProps = (state) => ({
   playerData: state.headerReducer.player,
+  // headerReducer: state.headerReducer,
 });
 
 Feedback.propTypes = {
   playerData: PropTypes.shape().isRequired,
   history: PropTypes.shape().isRequired,
+  // headerReducer: PropTypes.shape().isRequired,
 };
 
 export default connect(mapStateToProps)(Feedback);
