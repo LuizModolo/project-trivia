@@ -48,6 +48,9 @@ class Login extends Component {
       gravatarEmail: email,
     } };
     localStorage.setItem('state', JSON.stringify(obj));
+    if (!localStorage.getItem('ranking')) {
+      localStorage.setItem('ranking', JSON.stringify([]));
+    }
     emailDispatch(this.state);
     history.push('/game');
   }

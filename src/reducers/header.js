@@ -29,6 +29,15 @@ const headerReducer = (state = INITIAL_STATE, action) => {
         score: Number(state.player.score) + Number(action.score),
       } };
 
+  case 'CLEAR_INFO':
+    return { ...state,
+      player: {
+        name: '',
+        assertions: 0,
+        score: 0,
+        gravatarEmail: '',
+      } };
+
   default:
     return state;
   }

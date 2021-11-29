@@ -2,6 +2,9 @@ const SAVE_EMAIL = 'SAVE_EMAIL';
 const GET_API = 'GET_API';
 const NO_ANSWER = 'NO_ANSWER';
 const CORRECT_ANSWER = 'CORRECT_ANSWER';
+const GRAVATAR_IMG = 'GRAVATAR_IMG';
+const GET_SCOREQUESTION = 'GET_SCOREQUESTION';
+const CLEAR_INFO = 'CLEAR_INFO';
 
 export const emailAction = (state) => ({ type: SAVE_EMAIL, state });
 
@@ -15,3 +18,9 @@ export function fetchApi(token) {
 export const noAnswer = () => ({ type: NO_ANSWER });
 
 export const correctAnswer = (score) => ({ type: CORRECT_ANSWER, score });
+
+export const gravatarImgAction = (personalInfo) => ({ type: GRAVATAR_IMG, personalInfo });
+
+export const getScoreAction = (score) => ({ type: GET_SCOREQUESTION, score });
+
+export const clearAction = () => ({ type: CLEAR_INFO });

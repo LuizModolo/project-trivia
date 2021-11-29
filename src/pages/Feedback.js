@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Button from '../components/Button';
+import { clearAction } from '../actions';
 
 class Feedback extends Component {
   constructor() {
@@ -13,7 +14,8 @@ class Feedback extends Component {
   }
 
   handleStartAgain() {
-    const { history } = this.props;
+    const { history, clearDispatch } = this.props;
+    clearDispatch();
     history.push('/');
   }
 
@@ -58,6 +60,10 @@ class Feedback extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  clearDispatch: () => dispatch(clearAction()),
+});
+
 const mapStateToProps = (state) => ({
   playerData: state.headerReducer.player,
 });
@@ -65,6 +71,7 @@ const mapStateToProps = (state) => ({
 Feedback.propTypes = {
   playerData: PropTypes.shape().isRequired,
   history: PropTypes.shape().isRequired,
+  clearDispatch: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Feedback);
+export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
