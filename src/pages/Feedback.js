@@ -9,11 +9,17 @@ class Feedback extends Component {
     super();
 
     this.handleStartAgain = this.handleStartAgain.bind(this);
+    this.handleBtnRanking = this.handleBtnRanking.bind(this);
   }
 
   handleStartAgain() {
     const { history } = this.props;
     history.push('/');
+  }
+
+  handleBtnRanking() {
+    const { history } = this.props;
+    history.push('/ranking');
   }
 
   render() {
@@ -37,6 +43,11 @@ class Feedback extends Component {
           {' '}
           questões!
         </p>
+        <Button
+          testId="btn-ranking"
+          onClick={ this.handleBtnRanking }
+          labelText="Ver Ranking"
+        />
         <Button
           testId="btn-play-again"
           onClick={ this.handleStartAgain }
