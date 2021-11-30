@@ -40,7 +40,6 @@ class Questions extends Component {
       this.disabledButton();
       noAnswerDispatch();
       this.changeBorderColor();
-      clearInterval(this.cronometerInterval);
     }
   }
 
@@ -115,7 +114,6 @@ class Questions extends Component {
       this.disabledButton();
     }
     this.disabledNextButton();
-    clearInterval(this.cronometerInterval);
   }
 
   render() {
