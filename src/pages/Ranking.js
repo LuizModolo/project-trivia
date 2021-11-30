@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '../components/Button';
 import { clearAction } from '../actions';
+import Footer from '../components/Footer';
 
 class Ranking extends Component {
   constructor() {
@@ -33,20 +34,23 @@ class Ranking extends Component {
 
   render() {
     return (
-      <div>
-        <h1 data-testid="ranking-title">Ranking</h1>
-        { this.getRankingFromStorage().map((player, index) => (
-          <div key="index">
-            <img src={ player.picture } alt="foto do jogador" />
-            <p data-testid={ `player-name-${index}` }>{player.name}</p>
-            <p data-testid={ `player-score-${index}` }>{player.score}</p>
-          </div>
-        )) }
-        <Button
-          testId="btn-go-home"
-          onClick={ this.handleStartAgain }
-          labelText="Jogar novamente"
-        />
+      <div className="rankingFull">
+        <div className="rankingBody">
+          <h1 data-testid="ranking-title">Ranking</h1>
+          { this.getRankingFromStorage().map((player, index) => (
+            <div className="rankingPlayer" key="index">
+              <img src={ player.picture } alt="foto do jogador" />
+              <h4 data-testid={ `player-name-${index}` }>{player.name}</h4>
+              <p data-testid={ `player-score-${index}` }>{player.score}</p>
+            </div>
+          )) }
+          <Button
+            testId="btn-go-home"
+            onClick={ this.handleStartAgain }
+            labelText="Jogar novamente"
+          />
+        </div>
+        <Footer />
       </div>
     );
   }

@@ -121,36 +121,47 @@ class Questions extends Component {
     const { isButtonDisabled, isBorderWithColor,
       isButtonNextDisabled, seconds } = this.state;
     return (
-      <div>
-        <div>
-          <h2 data-testid="question-category">{ questionData.category }</h2>
+      <div className="questionBody">
+        <div className="questionTitle">
+          <h2 data-testid="question-category">
+            Category
+            {' '}
+            { questionData.category }
+          </h2>
           <h3 data-testid="question-text">{ questionData.question }</h3>
         </div>
-        <p>{ seconds }</p>
-        <div>
-          { answersList.map((answer, index) => (answer === questionData.correct_answer ? (
-            <Button
-              className={ isBorderWithColor ? 'correct-answer2' : 'correct-answer' }
-              key={ index }
-              testId="correct-answer"
-              onClick={ this.clickAnswer }
-              labelText={ answer }
-              disabled={ isButtonDisabled }
-            />)
-            : (
-              <Button
-                className={ isBorderWithColor ? 'wrong-answer2' : 'wrong-answer' }
-                key={ index }
-                testId={ `wrong-answer-${index}` }
-                onClick={ this.clickAnswer }
-                labelText={ answer }
-                disabled={ isButtonDisabled }
-              />)))}
-          { !isButtonNextDisabled && <Button
-            onClick={ () => { this.setInitialState(); onClick(); } }
-            labelText="Próxima"
-            testId="btn-next"
-          /> }
+        <p>
+          Tempo:
+          {' '}
+          { seconds }
+        </p>
+        <div className="questionOptions">
+          <div className="questionOptionsB">
+            { answersList
+              .map((answer, index) => (answer === questionData.correct_answer ? (
+                <Button
+                  className={ isBorderWithColor ? 'correct-answer2' : 'correct-answer' }
+                  key={ index }
+                  testId="correct-answer"
+                  onClick={ this.clickAnswer }
+                  labelText={ answer }
+                  disabled={ isButtonDisabled }
+                />)
+                : (
+                  <Button
+                    className={ isBorderWithColor ? 'wrong-answer2' : 'wrong-answer' }
+                    key={ index }
+                    testId={ `wrong-answer-${index}` }
+                    onClick={ this.clickAnswer }
+                    labelText={ answer }
+                    disabled={ isButtonDisabled }
+                  />)))}
+            { !isButtonNextDisabled && <Button
+              onClick={ () => { this.setInitialState(); onClick(); } }
+              labelText="Próxima"
+              testId="btn-next"
+            /> }
+          </div>
         </div>
       </div>
     );

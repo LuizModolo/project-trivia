@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Questions from '../components/Questions';
 import { fetchApi, getScoreAction } from '../actions';
+import Footer from '../components/Footer';
 
 class Game extends Component {
   constructor() {
@@ -102,6 +103,7 @@ class Game extends Component {
             answersList={ answersList }
           />
         ) : <p>Carregando...</p> }
+        <Footer />
       </div>
     );
   }

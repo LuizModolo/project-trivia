@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import { clearAction } from '../actions';
+import Footer from '../components/Footer';
 
 class Feedback extends Component {
   constructor() {
@@ -28,33 +29,42 @@ class Feedback extends Component {
     const { playerData } = this.props;
     const scoreResult = 3;
     return (
-      <div>
+      <div className="feedbackFull">
         <Header />
-        { playerData.assertions >= scoreResult
-          ? <p data-testid="feedback-text">Mandou bem!</p>
-          : <p data-testid="feedback-text">Podia ser melhor...</p>}
-        <p>
-          Sua pontuação foi:
-          {' '}
-          <span data-testid="feedback-total-score">{ playerData.score }</span>
-        </p>
-        <p>
-          Você acertou
-          {' '}
-          <span data-testid="feedback-total-question">{ playerData.assertions }</span>
-          {' '}
-          questões!
-        </p>
-        <Button
-          testId="btn-ranking"
-          onClick={ this.handleBtnRanking }
-          labelText="Ver Ranking"
-        />
-        <Button
-          testId="btn-play-again"
-          onClick={ this.handleStartAgain }
-          labelText="Jogar novamente"
-        />
+        <div className="feedbackBody">
+          <div className="feedbackTitle">
+            { playerData.assertions >= scoreResult
+              ? <p data-testid="feedback-text">Mandou bem!</p>
+              : <p data-testid="feedback-text">Podia ser melhor...</p>}
+          </div>
+          <div className="feedbackContent">
+            <p>
+              Sua pontuação foi:
+              {' '}
+              <span data-testid="feedback-total-score">{ playerData.score }</span>
+            </p>
+            <p>
+              Você acertou
+              {' '}
+              <span data-testid="feedback-total-question">{ playerData.assertions }</span>
+              {' '}
+              questões!
+            </p>
+            <div className="feedbackBtn">
+              <Button
+                testId="btn-ranking"
+                onClick={ this.handleBtnRanking }
+                labelText="Ver Ranking"
+              />
+              <Button
+                testId="btn-play-again"
+                onClick={ this.handleStartAgain }
+                labelText="Jogar novamente"
+              />
+            </div>
+          </div>
+        </div>
+        <Footer />
       </div>
     );
   }
