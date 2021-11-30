@@ -22,8 +22,8 @@ class Header extends React.Component {
   render() {
     const { userData } = this.props;
     return (
-      <div>
-        <div>
+      <div className="headerFull">
+        <div className="headerProfile">
           <img
             src={ this.getGravatar() }
             alt="sua foto"
@@ -35,12 +35,15 @@ class Header extends React.Component {
             { userData.name }
           </p>
         </div>
-        <div>
-          <p
-            data-testid="header-score"
-          >
-            { userData.score }
-          </p>
+        <div className="headerScore">
+          <h3>Pontuação</h3>
+          <div>
+            <p
+              data-testid="header-score"
+            >
+              { userData.score }
+            </p>
+          </div>
         </div>
       </div>
     );

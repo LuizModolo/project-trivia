@@ -147,3 +147,62 @@ hr {
   border: 3px solid red;
   margin: 10px;
 }
+
+.headerFull {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(97,88,172);
+}
+
+.headerProfile {
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerProfile img {
+  border-radius: 50%;
+  width: 6vw;
+  border: solid 5px rgb(178,237,132);
+  margin-right: -5px;
+}
+
+.headerProfile p {
+  background-color: rgb(178,237,132);
+  padding: 7px;
+  padding-left: 25px;
+  padding-right: 15px;
+  border-radius: 0 20px 20px 0;
+  border: solid 2px rgb(178,237,132);
+}
+
+.headerScore {
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerScore div {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: solid 4px rgb(178,237,132);
+  background-color: rgb(78, 65, 125);
+  text-align: center;
+  color: white;
+  font-weight: 700;
+}
+
+.headerScore h3 {
+  border: solid 2px rgb(178,237,132);
+  background-color: rgb(178,237,132);
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 1.2rem;
+  margin-right: -10px;
+  border-radius: 20px 0 0 20px;
+}
+

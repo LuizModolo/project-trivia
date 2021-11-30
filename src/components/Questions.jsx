@@ -122,8 +122,10 @@ class Questions extends Component {
       isButtonNextDisabled, seconds } = this.state;
     return (
       <div>
-        <h2 data-testid="question-category">{ questionData.category }</h2>
-        <h3 data-testid="question-text">{ questionData.question }</h3>
+        <div>
+          <h2 data-testid="question-category">{ questionData.category }</h2>
+          <h3 data-testid="question-text">{ questionData.question }</h3>
+        </div>
         <p>{ seconds }</p>
         <div>
           { answersList.map((answer, index) => (answer === questionData.correct_answer ? (
