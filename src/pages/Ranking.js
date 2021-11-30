@@ -36,14 +36,16 @@ class Ranking extends Component {
     return (
       <div className="rankingFull">
         <div className="rankingBody">
-          <h1 data-testid="ranking-title">Ranking</h1>
-          { this.getRankingFromStorage().map((player, index) => (
-            <div className="rankingPlayer" key="index">
-              <img src={ player.picture } alt="foto do jogador" />
-              <h4 data-testid={ `player-name-${index}` }>{player.name}</h4>
-              <p data-testid={ `player-score-${index}` }>{player.score}</p>
-            </div>
-          )) }
+          <div className="ranking">
+            <h1 data-testid="ranking-title">Ranking</h1>
+            { this.getRankingFromStorage().map((player, index) => (
+              <div className="rankingPlayer" key="index">
+                <img src={ player.picture } alt="foto do jogador" />
+                <h4 data-testid={ `player-name-${index}` }>{player.name}</h4>
+                <p data-testid={ `player-score-${index}` }>{player.score}</p>
+              </div>
+            )) }
+          </div>
           <Button
             testId="btn-go-home"
             onClick={ this.handleStartAgain }

@@ -351,12 +351,26 @@ hr {
   justify-content: center;
 }
 
-.rankingBody h1 {
+.ranking {
+  align-items: center;
+  background-color: rgba(55, 48, 113, 0.7);
+  border-radius: 0 0 50px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 40px;
+  width: 55vw;
+}
+
+.ranking h1 {
+  color: white;
   margin: 40px 0;
 }
 
 .rankingBody button {
+  height: 6vh;
   margin: 40px 0;
+  width: 20vw;
 }
 
 .rankingPlayer {
