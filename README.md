@@ -1,6 +1,6 @@
 # Projeto **Trivia** #
 
-Foi desenvolvido em um projeto em grupo ao longo do curso da [Trybe](https://www.betrybe.com) um jogo de perguntas e respostas baseado no jogo **Trivia** _(tipo um show do milhão).
+Foi desenvolvido em um projeto em grupo ao longo do curso da [Trybe](https://www.betrybe.com) um jogo de perguntas e respostas baseado no jogo **Trivia** _(tipo um show do milhão)_.
 
 Link para o Projeto:
 
