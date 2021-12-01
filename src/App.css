@@ -215,17 +215,20 @@ hr {
   background-color: rgba(255, 255, 255, 0.25);
   display: flex;
   flex-direction: column;
-  height: 65.1vh;
+  height: 66vh;
   justify-content: center;
 }
 
 .footerFull {
   background-color: rgb(97, 88, 172);
+  bottom: 0;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 20px 0;
+  position: fixed;
+  width: 100%;
 }
 
 .footerFull h2 {
@@ -374,6 +377,7 @@ hr {
 .rankingBody button {
   height: 6vh;
   margin: 40px 0;
+  margin-bottom: 160px;
   width: 20vw;
 }
 
@@ -428,25 +432,33 @@ hr {
 
   .headerProfile {
     margin: 0;
-    margin-top: 30px;
+    margin-top: 15px;
   }
 
   .headerProfile img {
-    width: 90px;
+    width: 70px;
   }
 
   .headerProfile p {
+    font-size: 1rem;
     padding: 6px;
     padding-left: 12px;
     padding-right: 12px;
   }
 
   .headerScore {
-    margin: 20px 0;
+    margin: 10px 0;
+  }
+
+  .headerScore div {
+    font-size: 1.1rem;
+    font-weight: 600;
+    height: 55px;
+    width: 55px;
   }
 
   .headerScore h3 {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
 
   .questionBody {
@@ -474,6 +486,7 @@ hr {
   }
 
   .questionOptions {
+    margin-bottom: 135px;
     padding-bottom: 30px;
     width: 80vw;
   }
@@ -500,7 +513,7 @@ hr {
 
   .footerFull h2 {
     font-size: 1rem;
-    margin: 25px auto;
+    margin: 15px auto;
     width: 60%;
   }
 
@@ -510,18 +523,18 @@ hr {
     flex-flow: row wrap;
     justify-content: center;
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .footerFull a {
     font-size: 1rem;
-    margin: 10px 5px;
+    margin: 5px;
     width: 30%;
   }
 
   .feedbackBody {
     height: auto;
-    padding: 40px 0;
+    padding: 110px 0;
   }
 
   .feedbackTitle {
@@ -564,6 +577,7 @@ hr {
   }
 
   .rankingBody button {
+    margin-bottom: 170px;
     width: 60vw;
   }
 

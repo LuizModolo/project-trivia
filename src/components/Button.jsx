@@ -11,9 +11,9 @@ class Button extends Component {
         onClick={ onClick }
         data-testid={ testId }
         className={ className }
-      >
-        { labelText }
-      </button>
+        dangerouslySetInnerHTML={ { __html:
+          labelText } }
+      />
     );
   }
 }
