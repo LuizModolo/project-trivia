@@ -33,4 +33,42 @@ As tecnologias utilizadas com base em JavaScript foram _React e Redux_.
 
 ### Telas do projeto em funcionamento ###
 
-Prints  
+### Desktop ###
+
+<img src="./img/01D.png" width="900"><br>
+Tela de Login.   
+
+<img src="./img/02D.png" width="900"><br>
+Tela da pergunta múltipla escolha.    
+
+<img src="./img/03D.png" width="900"><br>
+Tela da pergunta múltipla escolha após clique.   
+
+<img src="./img/04D.png" width="900"><br>
+Tela da pergunta verdadeiro ou falso.   
+
+<img src="./img/05D.png" width="900"><br>
+Tela da de feedback negativo.   
+
+<img src="./img/06D.png" width="900"><br>
+Tela da de feedback positivo.   
+
+<img src="./img/07D.png" width="900"><br>
+Tela da de feedback ranking.   
+
+### Mobile ###
+
+<img src="./img/01M.png" width="300"><br>
+Tela de Login.   
+
+<img src="./img/02M.png" width="300"><br>
+Tela da pergunta múltipla escolha.    
+
+<img src="./img/03M.png" width="300"><br>
+Tela da pergunta verdadeiro ou falso após clique.   
+
+<img src="./img/04M.png" width="300"><br>
+Tela da de feedback.   
+
+<img src="./img/05M.png" width="300"><br>
+Tela da de feedback ranking.    
