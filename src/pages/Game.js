@@ -94,7 +94,7 @@ class Game extends Component {
     const { questionIndex, answersList } = this.state;
     const { apiData } = this.props;
     return (
-      <div>
+      <div className="gameFull">
         <Header />
         { Object.keys(apiData).length > 0 ? (
           <Questions

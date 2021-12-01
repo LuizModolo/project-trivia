@@ -38,8 +38,10 @@ class Questions extends Component {
     if (previous.seconds === MIN_SECONDS) {
       // Quando chegar em 30, Resposta errada. Sem pontuacao.
       this.disabledButton();
+      this.disabledNextButton();
       noAnswerDispatch();
       this.changeBorderColor();
+      clearInterval(this.cronometerInterval);
     }
   }
 
@@ -66,6 +68,10 @@ class Questions extends Component {
       isBorderWithColor: false,
       isButtonNextDisabled: true,
     });
+    const ONE_SECOND = 1000;
+    this.cronometerInterval = setInterval(() => {
+      this.setState((previous) => ({ seconds: previous.seconds - 1 }));
+    }, ONE_SECOND);
   }
 
   changeBorderColor() {
@@ -114,27 +120,24 @@ class Questions extends Component {
       this.disabledButton();
     }
     this.disabledNextButton();
+    clearInterval(this.cronometerInterval);
   }
 
   render() {
     const { questionData, onClick, answersList } = this.props;
-    const { isButtonDisabled, isBorderWithColor,
-      isButtonNextDisabled, seconds } = this.state;
+    const { isButtonDisabled, isBorderWithColor, isButtonNextDisabled,
+      seconds } = this.state;
     return (
       <div className="questionBody">
         <div className="questionTitle">
-          <h2 data-testid="question-category">
-            Category
-            {' '}
-            { questionData.category }
-          </h2>
-          <h3 data-testid="question-text">{ questionData.question }</h3>
+          <h2 data-testid="question-category">{`Category ${questionData.category}`}</h2>
+          <h3
+            data-testid="question-text"
+            dangerouslySetInnerHTML={ { __html:
+            questionData.question } }
+          />
         </div>
-        <p>
-          Tempo:
-          {' '}
-          { seconds }
-        </p>
+        <p>{`Tempo: ${seconds}`}</p>
         <div className="questionOptions">
           <div className="questionOptionsB">
             { answersList
@@ -160,6 +163,7 @@ class Questions extends Component {
               onClick={ () => { this.setInitialState(); onClick(); } }
               labelText="Próxima"
               testId="btn-next"
+              className="nextQuestion"
             /> }
           </div>
         </div>

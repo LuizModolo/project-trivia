@@ -65,7 +65,11 @@ class Login extends Component {
     return (
       <div className="login-back">
         <div className="login-page">
-          <img src="logoMillionaire.png" alt="logotipo-do-jogo" />
+          <img
+            src="https://i.ibb.co/Q8vnj3V/logo-Millionaire.png"
+            alt="logo-Millionaire"
+            border="0"
+          />
           <Input
             testId="input-player-name"
             type="text"
