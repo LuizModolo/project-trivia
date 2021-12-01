@@ -5,11 +5,11 @@ Foi desenvolvido em um projeto em grupo ao longo do curso da [Trybe](https://www
 Link para o Projeto:
 
 Os participantes do grupo são:  
-[Luiz Fernando C. Módolo](https://github.com/LuizModolo). 
-[Maria Laura](https://github.com/marialaura27). 
-[Thomaz J. Lima](https://github.com/thomazjeffersonlima). 
-[Vanessa M. Rios](https://github.com/vanessamrios). 
-[Vivian Ost](https://github.com/vivianost)  
+[Luiz Fernando C. Módolo](https://github.com/LuizModolo).  
+[Maria Laura](https://github.com/marialaura27).  
+[Thomaz J. Lima](https://github.com/thomazjeffersonlima).  
+[Vanessa M. Rios](https://github.com/vanessamrios).  
+[Vivian Ost](https://github.com/vivianost)   
 
 As tecnologias utilizadas com base em JavaScript foram _React e Redux_.
 
