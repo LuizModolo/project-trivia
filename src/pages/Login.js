@@ -76,7 +76,7 @@ class Login extends Component {
             name="name"
             value={ name }
             onChange={ this.handleChange }
-            placeholder="Nome"
+            placeholder="Name"
           />
           <Input
             testId="input-gravatar-email"
@@ -87,13 +87,13 @@ class Login extends Component {
             placeholder="E-mail"
           />
           <Button
-            labelText="Jogar"
+            labelText="Play"
             testId="btn-play"
             disabled={ inLoginButtonDisabled }
             onClick={ this.handleClick }
           />
           <Button
-            labelText="Configurações"
+            labelText="Configuration"
             testId="btn-settings"
             onClick={ this.handleSettings }
           />

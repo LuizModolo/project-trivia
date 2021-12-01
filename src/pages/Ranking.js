@@ -49,7 +49,7 @@ class Ranking extends Component {
           <Button
             testId="btn-go-home"
             onClick={ this.handleStartAgain }
-            labelText="Jogar novamente"
+            labelText="Play Again"
           />
         </div>
         <Footer />

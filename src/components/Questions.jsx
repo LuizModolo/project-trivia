@@ -137,7 +137,7 @@ class Questions extends Component {
             questionData.question } }
           />
         </div>
-        <p>{`Tempo: ${seconds}`}</p>
+        <p>{`Time: ${seconds}`}</p>
         <div className="questionOptions">
           <div className="questionOptionsB">
             { answersList
@@ -161,7 +161,7 @@ class Questions extends Component {
                   />)))}
             { !isButtonNextDisabled && <Button
               onClick={ () => { this.setInitialState(); onClick(); } }
-              labelText="Próxima"
+              labelText="Next"
               testId="btn-next"
               className="nextQuestion"
             /> }

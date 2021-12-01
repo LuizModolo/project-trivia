@@ -102,7 +102,7 @@ class Game extends Component {
             questionData={ apiData.results[questionIndex] }
             answersList={ answersList }
           />
-        ) : <p>Carregando...</p> }
+        ) : <p>Loading...</p> }
         <Footer />
       </div>
     );

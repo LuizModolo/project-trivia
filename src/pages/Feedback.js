@@ -34,32 +34,32 @@ class Feedback extends Component {
         <div className="feedbackBody">
           <div className="feedbackTitle">
             { playerData.assertions >= scoreResult
-              ? <p data-testid="feedback-text">Mandou bem!</p>
-              : <p data-testid="feedback-text">Podia ser melhor...</p>}
+              ? <p data-testid="feedback-text">Very well!</p>
+              : <p data-testid="feedback-text">Could be better...</p>}
           </div>
           <div className="feedbackContent">
             <p>
-              Sua pontuação foi:
+              Your score:
               {' '}
               <span data-testid="feedback-total-score">{ playerData.score }</span>
             </p>
             <p>
-              Você acertou
+              You got
               {' '}
               <span data-testid="feedback-total-question">{ playerData.assertions }</span>
               {' '}
-              questões!
+              questions right!
             </p>
             <div className="feedbackBtn">
               <Button
                 testId="btn-ranking"
                 onClick={ this.handleBtnRanking }
-                labelText="Ver Ranking"
+                labelText="Ranking"
               />
               <Button
                 testId="btn-play-again"
                 onClick={ this.handleStartAgain }
-                labelText="Jogar novamente"
+                labelText="Play Again"
               />
             </div>
           </div>

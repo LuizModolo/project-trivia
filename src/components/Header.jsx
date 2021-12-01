@@ -36,7 +36,7 @@ class Header extends React.Component {
           </p>
         </div>
         <div className="headerScore">
-          <h3>Pontuação</h3>
+          <h3>Score</h3>
           <div>
             <p
               data-testid="header-score"
